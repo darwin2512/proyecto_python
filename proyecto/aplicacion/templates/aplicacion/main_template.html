@@ -1,0 +1,181 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  {% block title %}<title>Comunidad Ebenezer</title> {% endblock %}
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/eb.jpg' %}" rel="icon">
+  <link href="{% static 'img/eb.jpg' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="{% static 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800' %}" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+    Theme Name: TheEvent
+    Theme URL: https://bootstrapmade.com/theevent-conference-event-bootstrap-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
+</head>
+
+<body>
+
+  <!--==========================
+    Header
+  ============================-->
+  <header id="header" class="header-fixed">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <!-- Uncomment below if you prefer to use a text logo -->
+        <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
+        <a class="scrollto"><img src="{% static 'img/ebenezer1.png' %}" alt="" title=""></a>
+      </div>
+
+      {% block navegar%}
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="{% url 'aplicacion:index' %}">Home</a></li>
+
+
+          {% if user.is_anonymous%}
+          {% else %}
+          <li>
+            <a href="#">Comunidades</a>
+            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                <li>
+                    <a href="{% url 'aplicacion:comunidad_create' %}">Registrar</a>
+                </li>
+                <li>
+                    <a href="{% url 'aplicacion:comunidades' %}">Listar</a>
+                </li>
+            </ul>
+          </li>
+          {% endif %}
+          
+          {% if user.is_anonymous %}
+
+          {% else %}
+          <li>
+            <a href="#">Persona</a>
+            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                <li>
+                    <a href="{% url 'aplicacion:persona_create' %}">Registrar</a>
+                </li>
+                <li>
+                    <a href="{% url 'aplicacion:personas' %}">Listar</a>
+                </li>
+            </ul>          
+          </li>
+          {% endif %}
+
+          {% if user.is_anonymous %}
+
+          {% else %}
+          <li>
+            <a href="#">Actividades</a>
+            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                <li>
+                    <a href="{% url 'aplicacion:actividad_create' %}">Registrar</a>
+                </li>
+                <li>
+                    <a href="{% url 'aplicacion:actividades' %}">Listar</a>
+                </li>
+            </ul>
+          </li>
+          {% endif %}
+
+          {% if user.is_authenticated %}
+          <li> <a href="#"> User: {{ user.get_username }}</a>
+              <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                <li><a href="{% url 'logout' %}?next={{request.path}}">Logout</a></li>   
+            </ul>
+              {% else %}
+              <li><a href="{% url 'login' %}?next={{request.path}}">Login</a></li>   
+            {% endif %} 
+            </ul>
+          </li>
+      </nav><!-- #nav-menu-container -->
+      {% endblock %}
+    </div>
+  </header><!-- #header -->
+
+  <main id="main" class="main-page">
+
+    <!--==========================
+      Speaker Details Section
+    ============================-->
+    {% block content%}
+    
+    {% endblock %}
+    
+
+  </main>
+
+
+  <!--==========================
+    Footer
+  ============================-->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contáctenos</h4>
+            <p>
+              Zona 1, Edificio Ebenezer, Ciudad de Guatemala
+              <strong>Telefno:</strong> +502 23452523<br>
+              <strong>Email:</strong> info@ebenezer.com<br>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <div class="container">
+          <div class="copyright">
+            &copy; Copyright <strong>Ebenezer</strong>. Todos los derechos reservados
+          </div>
+        </div>
+  </footer><!-- #footer -->
+
+  <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+  <!-- JavaScript Libraries -->
+  <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'lib/jquery/jquery-migrate.min.js' %}"></script>
+  <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+  <script src="{% static 'lib/superfish/hoverIntent.js' %}"></script>
+  <script src="{% static 'lib/superfish/superfish.min.js' %}"></script>
+  <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+  <script src="{% static 'lib/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+  <!-- Contact Form JavaScript File -->
+  <script src="{% static 'contactform/contactform.js' %}"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

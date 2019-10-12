@@ -1,0 +1,57 @@
+{% extends "aplicacion/main_template.html" %}
+
+{% load static %}
+
+{% block title %}<title>Personas</title>{% endblock %}
+
+{% block content %}
+
+    <div class="section__content section__content--p30">
+
+        <div class="col-md-12">
+                <h1>Informacion de personas</h1> 
+            <a href="{% url 'aplicacion:persona_create' %}" class="pull-right"><button type="button" class="btn btn-danger">Agregar</button></a>
+            <br><br>
+        </div>          
+
+        <div class="col-md-12">
+            <div class="table-responsive table--no-card m-b-30">
+                <table class="table table-borderless table-striped table-earning">
+
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Comunidad</th>
+                            <th style="text-align: center;">Accion</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% if persona_list %}
+
+                            {% for persona in persona_list %}                     
+                                <tr>
+                                    <td>{{ persona.nombre }}</td>
+                                    <td>{{ persona.apellido }}</td>
+                                    <td>{{ persona.comunidad }}</td>
+                                    <td style="text-align: center;"> 
+                                        <a href="{% url 'aplicacion:persona_update' persona.id %}"><i class="fa fa-edit"></i></a> |
+                                        {% if perms.aplicacion.delete_persona %}
+                                        <a href="{% url 'aplicacion:persona_delete' persona.id %}"><i class="fa fa-trash"></i> </a>
+                                        {% endif %}
+                                        </td>                                 
+
+                                </tr>
+                            {% endfor %}                      
+                            
+                            {% endif %}   
+                    </tbody>
+                </table>     
+                        
+            </div>
+        </div>
+    </div>
+   
+{% endblock content %}

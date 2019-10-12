@@ -1,0 +1,1 @@
+**El archivo settings.py esta configurado para utilizar con Postgressql**

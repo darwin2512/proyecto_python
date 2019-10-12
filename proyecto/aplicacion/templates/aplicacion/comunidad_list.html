@@ -1,0 +1,58 @@
+{% extends "aplicacion/main_template.html" %}
+
+{% load static %}
+
+{% block title %}<title>Comunidades</title>{% endblock %}
+
+{% block content %}
+
+    <div class="section__content section__content--p30">
+
+        <div class="col-md-12">
+                <h1>Registros de actividades</h1> 
+            <a href="{% url 'aplicacion:comunidad_create' %}" class="pull-right"><button type="button" class="btn btn-danger">Agregar</button></a>
+            <br><br>
+        </div>          
+
+        <div class="col-md-12">
+            <div class="table-responsive table--no-card m-b-30">
+                <table class="table table-borderless table-striped table-earning">
+
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Departamento</th>
+                            <th>Municipio</th>
+                            <th style="text-align: center;">Accion</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% if comunidad_list %}
+
+                            {% for comunidad in comunidad_list %}                     
+                                <tr>
+                                    <td>{{ comunidad.comunidad }}</td>
+                                    <td>{{ comunidad.departamento }}</td>
+                                    <td>{{ comunidad.municipio }}</td>
+                                    <td style="text-align: center;">
+                                        <a href="{% url 'aplicacion:comunidad_update' comunidad.id %}"><i class="fa fa-edit"></i></a> |
+                                        {% if perms.aplicacion.delete_comunidad %}
+                                        <a href="{% url 'aplicacion:comunidad_delete' comunidad.id %}"><i class="fa fa-trash"></i></a>
+                                        {% endif %}
+                                        </td>                                 
+
+                                </tr>
+                            {% endfor %}                      
+                            
+                            {% endif %}   
+                    </tbody>
+                </table>     
+                        
+            </div>
+        </div>
+
+    </div>
+   
+{% endblock content %}

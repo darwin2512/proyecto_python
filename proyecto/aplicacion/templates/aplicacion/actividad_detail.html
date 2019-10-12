@@ -1,0 +1,35 @@
+{% extends "aplicacion/main_template.html" %}
+
+{% load static %}
+
+{% block title %}<title>Actividades</title>{% endblock %}
+
+{% block content %}
+
+    <div class="section__content section__content--p30"> 
+    
+        <div class="col-md-12">
+            <h2>Eventos</h2> 
+            <br>
+        </div>          
+
+        <div class="col-lg-6.offset-md-3">
+                <div class="card">
+                    <div class="card-header">Eventos a realizarse</div>
+
+                    <div class="card-body card-block">
+                            <p><strong>Nombre:</strong> {{ actividad.nombreActividad }}</p>
+                            <p><strong>Fecha:</strong> {{ actividad.fecha }}</p>    
+                            <p><strong>Hora:</strong> {{ actividad.hora }}</p> 
+                            <p><strong>Lugar:</strong> {{ actividad.lugar }}</p>
+                            <p><strong>Conferencista:</strong> {{ actividad.conferencista }}</p>
+                    </div>
+                        
+                </div>
+        </div> 
+
+        
+
+    </div>
+
+{% endblock content %}

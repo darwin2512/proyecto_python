@@ -1,0 +1,87 @@
+{% extends "aplicacion/main_template.html" %}
+
+{% load static %}
+
+{% block title %}<title>Actividades</title>{% endblock %}
+
+{% block content %}
+
+    <div class="section__content section__content--p30">
+
+        <div class="col-md-12">
+            <h2>Agregar Actividad</h2> 
+            <br>
+        </div>              
+
+        <div class="col-lg-6.offset-md-3">
+                <div class="card">
+                    <div class="card-header">Ingresar datos de Actividad</div>
+
+                    <div class="card-body card-block">
+                        <form action="" method="post" class="">
+                            <div class="form-group">
+                            {% csrf_token %}
+                                <table>
+                                    {{ form.as_table }}
+                                </table>                                                                                       
+                            </div>
+                    </div>
+
+                            <div class="card-header">Participantes de la Actividad</div>
+                                
+                                <table class="table">
+                                    {{ actividadespar.management_form }}
+                    
+                                    {% for form in actividadespar.forms %}
+                                        {% if forloop.first %}
+                                            <thead>
+                                            <tr>
+                                                {% for field in form.visible_fields %}
+                                                    <th>{{ field.label|capfirst }}</th>
+                                                {% endfor %}
+                                            </tr>
+                                            </thead>
+                                        {% endif %}
+                                            <tr class="formset_row-{{ formset.prefix }}">
+                                                {% for field in form.visible_fields %}
+                                                    <td>
+                                                        {# Include the hidden fields in the form #}
+                                                        {% if forloop.first %}
+                                                            {% for hidden in form.hidden_fields %}
+                                                                {{ hidden }}
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                        {{ field.errors.as_ul }}
+                                                        {{ field }}
+                                                    </td>
+                                                {% endfor %}
+                                            </tr>
+                                    {% endfor %}
+                                </table> 
+
+                            <div class="card-footer">
+                                <a href="{% url 'aplicacion:actividades' %}"><button type="button" class="btn btn-dark btn-sm">Cancelar</button></a>
+                                <button type="submit" class="btn btn-danger btn-sm pull-right">Agregar</button>
+                            </div>
+                        </form>
+                </div>
+        </div>
+        
+    </div>
+
+    <!-- Scripts necesarios para utilizar el script de la tabla -->
+    <script src="{% static 'vendor/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'formset/jquery.formset.js' %}"></script>
+    
+    <!-- Script para agregar o quitar filas de la tabla Participantes -->
+    <script type="text/javascript">
+        $('.formset_row-{{ formset.prefix }}').formset({
+            addText: 'Agregar',
+            deleteText: 'Quitar',
+            prefix: '{{ formset.prefix }}',
+        });
+    </script>
+
+    
+   
+{% endblock content %}

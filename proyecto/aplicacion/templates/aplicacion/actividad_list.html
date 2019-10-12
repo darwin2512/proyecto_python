@@ -1,0 +1,62 @@
+{% extends "aplicacion/main_template.html" %}
+
+{% load static %}
+
+{% block title %}<title>Actividades</title>{% endblock %}
+
+{% block content %}
+
+    <div class="section__content section__content--p30">
+
+        <div class="col-md-12">
+                <h1>Nuestras actividades</h1> 
+            <a href="{% url 'aplicacion:actividad_create' %}" class="pull-right"><button type="button" class="btn btn-danger">Agregar</button></a>
+            <br><br>
+        </div>          
+
+        <div class="col-md-12">
+            <div class="table-responsive table--no-card m-b-30">
+                <table class="table table-borderless table-striped table-earning">
+
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Lugar</th>
+                            <th>Conferencista</th>
+                            <th style="text-align: center;">Accion</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% if actividad_list %}
+
+                            {% for actividad in actividad_list %}                     
+                                <tr>
+                                    <td>{{ actividad.nombreActividad }}</td>
+                                    <td>{{ actividad.fecha }}</td>
+                                    <td>{{ actividad.hora }}</td>
+                                    <td>{{ actividad.lugar }}</td>
+                                    <td>{{ actividad.conferencista }}</td>
+                                    <td style="text-align: center;">
+                                        <a href="{% url 'aplicacion:actividad_update' actividad.id %}"><i class="fa fa-edit"></i></a> |
+                                        {% if perms.aplicacion.delete_actividad %}
+                                        <a href="{% url 'aplicacion:actividad_delete' actividad.id %}"><i class="fa fa-trash"></i></a>
+                                        {% endif %}
+                                        </td>                                 
+
+                                </tr>
+                            {% endfor %}                      
+                            
+                            {% endif %}   
+                    </tbody>
+                </table>     
+                        
+            </div>
+        </div>
+
+    </div>
+   
+{% endblock content %}

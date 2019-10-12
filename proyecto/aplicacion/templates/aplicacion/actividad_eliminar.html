@@ -1,0 +1,29 @@
+{% extends "aplicacion/main_template.html" %}
+
+{% load static %}
+
+{% block title %}<title>Eliminar</title>{% endblock %}
+
+{% block content %}
+
+    <div class="section__content section__content--p30">
+
+        <div class="col-md-12">
+                <h1>Eliminar</h1> 
+                <br>
+
+                <p>Estas seguro que deseas eliminar la Actividad: </p>
+                <strong>"{{ actividad }}"</strong>
+                <br><br>
+
+                    <form action="" method="POST">
+                    {% csrf_token %}          
+                    <a href="{% url 'aplicacion:comunidades' %}"><button type="button" class="btn btn-dark btn-sm">Cancelar</button></a> 
+                    <button type="submit" class="btn btn-danger btn-sm">Confirmar</button>
+                    <br>
+                    </form>
+        </div>          
+   
+    </div>
+   
+{% endblock content %}

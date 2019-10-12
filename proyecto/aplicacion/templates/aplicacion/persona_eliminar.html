@@ -1,0 +1,38 @@
+{% extends "aplicacion/main_template.html" %}
+
+{% load static %}
+
+{% block title %}<title>Personas</title>{% endblock %}
+
+{% block content %}
+
+    <div class="section__content section__content--p30">
+
+        <div class="col-md-12">
+                <h1>Eliminar</h1> 
+                <br>
+
+                <p>¿Deseas eliminar a la Persona?: </p>
+                <strong>"{{ persona }}"</strong>
+                <br><br>
+
+                    <form action="" method="POST">
+                    {% csrf_token %}  
+                    <a href="{% url 'aplicacion:personas' %}"><button type="button" class="btn btn-dark btn-sm">Cancelar</button></a> 
+                    <button type="submit" class="btn btn-danger btn-sm">Confirmar</button>      
+                    <br>
+                    </form>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>                    
+        </div>          
+   
+    </div>
+   
+{% endblock content %}

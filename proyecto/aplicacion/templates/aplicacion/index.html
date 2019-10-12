@@ -1,0 +1,46 @@
+{% extends "aplicacion/main_template.html" %}
+
+{% load static %}
+
+{% block content %}
+    
+    <h1>Comunidad Ebenezer te la bienvenida</h1>
+
+
+  
+        <div class="container">
+          <div class="section-header">
+            <h2>Conferencistas</h2>
+          </div>
+  
+          <div class="row">
+            <div class="col-lg-4 col-md-6">
+              <div class="speaker">
+                <img src="{% static 'img/speakers/1.jpg' %}" alt="Speaker 1" class="img-fluid">
+                <div class="details">
+                  <h3><a href="#">Brenden Legros</a></h3>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="speaker">
+                <img src="{% static 'img/speakers/2.jpg' %}" alt="Speaker 2" class="img-fluid">
+                <div class="details">
+                  <h3><a href="#">Hubert Hirthe</a></h3>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="speaker">
+                <img src="{% static 'img/speakers/4.jpg' %}" alt="Speaker 4" class="img-fluid">
+                <div class="details">
+                  <h3><a href="#">Jack Christiansen</a></h3>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+{% endblock content %}

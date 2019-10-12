@@ -1,0 +1,170 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+<title>Login</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <link href="{% static 'css/font-face.css' %}" rel="stylesheet" media="all">
+  <link href="{% static 'vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
+  <link href="{% static 'vendor/font-awesome-5/css/fontawesome-all.min.css' %}" rel="stylesheet" media="all">
+  <link href="{% static 'vendor/mdi-font/css/material-design-iconic-font.min.css' %}" rel="stylesheet" media="all">
+
+  <!-- Bootstrap CSS-->
+  <link href="{% static 'vendor/bootstrap-4.1/bootstrap.min.css' %}" rel="stylesheet" media="all">
+
+  <!-- Vendor CSS-->
+  <link href="{% static 'vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css' %}" rel="stylesheet" media="all">
+  <link href="{% static 'vendor/wow/animate.css' %}" rel="stylesheet" media="all">
+  <link href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}" rel="stylesheet" media="all">
+  <link href="{% static 'vendor/slick/slick.css' %}" rel="stylesheet" media="all">
+  <link href="{% static 'vendor/select2/select2.min.css' %}" rel="stylesheet" media="all">
+  <link href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css' %}" rel="stylesheet" media="all">
+
+  <!-- Main CSS-->
+  <link href="{% static 'css/theme.css' %}" rel="stylesheet" media="all">
+  <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+  
+</head>
+
+<body>
+
+  <!--==========================
+    Header
+  ============================-->
+  <header id="header" class="header-fixed">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <!-- Uncomment below if you prefer to use a text logo -->
+        <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
+        <a class="scrollto"><img src="{% static 'img/ebenezer1.png' %}" alt="" title=""></a>
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+        </ul>   
+      </nav><!-- #nav-menu-container -->
+
+    </div>
+  </header><!-- #header -->
+
+  <main id="main" class="main-page">
+
+    <!--==========================
+      Speaker Details Section
+    ============================-->
+    <div class="page-wrapper">
+            <div class="page-content--bge5">
+                <div class="container">
+                    <div class="login-wrap">
+                        <div class="login-content">
+                            <div class="login-logo">
+                                <a href="#">
+                                    <img src="{% static 'img/ebenezer1.png' %}" alt="">
+                                </a>
+                            </div>
+                            <div class="login-form">
+                                    {% if next %}
+                                        {% if user.is_authenticated %}
+                                        <p>Your account doesn't have access to this page. To proceed,
+                                        please login with an account that has access.</p>
+                                        {% else %}
+                                        <p>Ingresa tus datos</p>
+                                        {% endif %}
+                                    {% endif %}
+                                <form action="{% url 'login' %}" method="post">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label>Usuario</label>
+                                        {{ form.username }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Contraseña</label>
+                                        {{ form.password }}
+                                    </div>                            
+                                    {% if form.errors %}
+                                    <p style="color: brown; text-align: center;">Tu usuario o contraseña no son correctos.</p>
+                                    <p style="color:brown; text-align: center;">Porfavor intenta otra vez.</p>
+                                    {% endif %}
+                                    <br>
+                                    <button class="au-btn au-btn--block au-btn--blue m-b-20" type="submit">Ingresar</button>
+                                    
+                                </form>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+
+  </main>
+
+
+  <!--==========================
+    Footer
+  ============================-->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contáctenos</h4>
+            <p>
+              Zona 1, Edificio Ebenezer, Ciudad de Guatemala
+              <strong>Telefno:</strong> +502 23452523<br>
+              <strong>Email:</strong> info@ebenezer.com<br>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <div class="container">
+          <div class="copyright">
+            &copy; Copyright <strong>Ebenezer</strong>. Todos los derechos reservados
+          </div>
+        </div>
+  </footer><!-- #footer -->
+
+  <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+  <!-- JavaScript Libraries -->
+  <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'lib/jquery/jquery-migrate.min.js' %}"></script>
+  <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+  <script src="{% static 'lib/superfish/hoverIntent.js' %}"></script>
+  <script src="{% static 'lib/superfish/superfish.min.js' %}"></script>
+  <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+  <script src="{% static 'lib/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+  <!-- Contact Form JavaScript File -->
+  <script src="{% static 'contactform/contactform.js' %}"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
+
+
+
